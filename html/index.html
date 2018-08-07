@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content = "height = device-height, width = 420, user-scalable = no" />
+        <title>Healthcare Monitoring System</title>
+        <script type="text/javascript" src="/webiopi.js"></script>
+        <script type="text/javascript">
+	webiopi().ready(function() {
+		
+		// automatically refresh UI each seconds
+                setInterval(updateUI, 1000);
+
+	});
+	
+	// function called through setInterval
+        function updateUI() {
+
+		// Immediately call getHours macro to update the UI with current values
+                webiopi().callMacro("getTemp", [], updateTemp); 
+		
+                
+        }
+	var updateTemp = function(macro, args, response) {
+                    var data = response.split(" ");
+		    Temp.innerHTML = data[0]+ "  °C";
+		    Heart.innerHTML = data[1]+ "  BPM";
+                }
+ 
+
+		
+	</script>
+        <style type="text/css">
+                button {
+                        display: block;
+                        margin: 5px 5px 5px 5px;
+                        width: 140px;
+                        height: 16px;
+                        font-size: 12pt;
+                        font-weight: bold;
+                        color: black;
+                }
+               
+                input[type="range"] {
+                        display: block;
+                        width: 140px;
+                        height: 12px;
+                }
+		.Temp {	       background-color: Yellow;
+                               display: block; 
+			       margin: 10px 10px 5px 5px; 
+			       width: 320px; 
+			       height: 45px;
+			       border-radius:10px;
+			       font-size: 18pt; 
+			       font-weight: 600; 		
+			       color: black; 		
+                }
+		.title 
+      			{
+      				width:760px; 
+	  			height: 65px;
+	  			margin:15px auto;
+	  			background-color:#D1E4E2;
+	  			border:1px solid #006633;
+	  			color:#000000;
+	  			padding: 10px 10px 10px 10px;
+	  			font-weight:bold;
+      			}
+		.center_page 
+      			{
+      				width:765px;
+	  			margin:10px auto;
+      			}
+		.left_side 
+      			{
+	 			width: 140px; 
+     				float: left;
+     				margin: 20px 0px 20px 0px;
+	 			background-color:#FFEAEA;
+	 			border: 1px solid #993300;
+     				color: #000000;
+     				padding: 10px 10px 10px 10px;
+	 			font-weight:bold; 
+      			}
+		.right_side 
+     			{
+	 			width:560px;
+     				float:right;
+	 			margin: 20px 5px 20px 0px;
+	 			background-color: #EAF9FF;
+	 			border:1px solid #006699;
+	 			color: #000000;
+	 			padding: 10px 10px 10px 10px;
+     			}	  
+         </style>
+</head>
+<body>
+
+<div align="center" class="title"><h1 align="center">Healthcare Monitoring System</h1></div>
+<div class="center_page">
+<div class="left_side">
+<h3 align="center"> Patient Details </h3>
+<table border=5 width=100>
+	<tr>
+		<td bgcolor="#EECCCC" width="50" align="center" ><b>Name</b></td>
+        	<td bgcolor="#D9E3C1" >X.Y.Z</td>
+    	</tr>
+	<tr>
+		<td bgcolor="#EECCCC" width="50" align="center" ><b>Age</b></td>
+        	<td bgcolor="#D9E3C1" >28</td>
+    	</tr>
+	<tr>
+		<td bgcolor="#EECCCC" width="50" align="center" ><b>Sex</b></td>
+        	<td bgcolor="#D9E3C1" >FEMALE</td>
+    	</tr>
+	<tr>
+		<td bgcolor="#EECCCC" width="50" align="center" ><b>Blood Group</b></td>
+        	<td bgcolor="#D9E3C1" >B+Ve</td>
+    	</tr>
+</table>	
+</div>
+<div class="right_side">
+<h3 align="center"> Patient Live Status </h3>
+<table border="5" align="center">
+
+                    <tr>
+
+			<td align="center">Body Temperature</td>			
+
+                    </tr>
+			<tr>
+				<td align="center" bgcolor="#D9E3C1"><div ID="Temp" ></div></td>
+			</tr>
+			<tr>
+				<td align="center" colspan="2" bgcolor="#EAF9FF" ></td>
+			<tr>
+
+                    <tr>
+
+			<td align="center">Heart Rate</td>
+
+                    </tr>
+			<tr>			
+				<td align="center" bgcolor="#D9E3C1"><div ID="Heart" ></div></td>
+			</tr>
+
+			<tr>
+				<td align="center" colspan="2" bgcolor="#EAF9FF" ></td>
+			</tr>
+
+                </table>
+
+</div>
+</div>
+</body>
+</html>
